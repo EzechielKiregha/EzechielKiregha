@@ -1,0 +1,52 @@
+import random
+
+
+   #CHARACTERS OF THE GAMES
+
+FIRST_PLAYER = 50
+CPU_PLAYER = 50
+POTION = 3
+SKIP_TURN = False
+
+   #WHOLE GAME ATTRIBUTIONS
+while True:
+    
+    # 1st PLAYER FUNCTION
+    if SKIP_TURN:
+        print("I skip my turn")
+        SKIP_TURN = False
+    else:
+        user_choice=" "
+        while user_choice not in ["1","2"]:
+            user_choice=input("Beat up your ENEMY =>(1) or heal yourself with the remed =>(2):")
+    
+    if user_choice=="1":  #1st PLAYER'S ATTACK
+        your_attack=random.randint(10,20)
+        CPU_PLAYER -= your_attack
+        print(f"You come to beat ENEMY up {your_attack} % of damages")
+
+    elif user_choice== "2":    # REMED(POTION)
+        if POTION >=0:
+            remed_health = random.randint(30,40)
+            FIRST_PLAYER += remed_health
+            POTION -=1
+            print(f"You've got {remed_health} % of health \u2764 Your actuel resort live is {POTION} of remed")
+        else:
+            print("You don't have any remed. ")
+            continue
+    
+    #CPU_PLAYER'S FUNCTION
+    if CPU_PLAYER <=0:
+        print("You win")
+        break
+    cpu_attack = random.randint(10,45)
+    FIRST_PLAYER -= cpu_attack
+    print(f"Your ENEMY fucked you up {cpu_attack} % of damages. ")
+    if FIRST_PLAYER <=0:
+        print("You lose")
+        break
+    # STATS
+    print(f"You still have {FIRST_PLAYER} % of your health to live.")
+    print(f" Your fucking ENEMY has {CPU_PLAYER} % of his life.")
+    print("_" * 50)
+print("GAME OVER")
